@@ -1,0 +1,21 @@
+---
+- name: Ensure nginx is started and enabled to start at boot
+  service: name=nginx state=started enabled=yes
+
+- name: Ensure tomcat is started and enabled to start at boot
+  service: name=tomcat7 state=started enabled=yes
+
+- name: Copy nginxconf
+  template: src=files/nginx.conf dest=/etc/nginx/nginx.conf mode=0644
+  notify:
+    - restart nginx
+
+- name: Copy tomcat server config
+  template: src=files/server.xml dest=/etc/tomcat7/server.xml mode=0664
+  notify:
+    - restart tomcat
+
+- name: Copy tomcat conf 
+  template: src=files/tomcat7.conf dest=/etc/tomcat7/tomcat7.conf mode=0664
+  notify:
+    - reload nginx

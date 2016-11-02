@@ -1,0 +1,30 @@
+---
+#------------Seyren Settings-----------------
+MONGO_URL: mongodb://localhost:27017/seyren #Default mongodb://localhost:27017/seyren
+SEYREN_URL: http://localhost:8080/seyren
+#SEYREN_LOG_PATH:  #If a value is set, it must end with a '/'.
+SEYREN_LOG_FILE_LEVEL: info
+#SEYREN_THREADS: #Default is 8
+GRAPHS_ENABLE: true
+
+#------------Graphite settings---------------
+GRAPHITE_URL: http://graphite.url.com:80
+
+#------------Email Settings-----------------
+#SMTP_HOST:
+#SMTP_PORT:
+#SMTP_FROM:
+#SMTP_USERNAME: 
+#SMTP_PASSWORD: 
+#SMTP_PROTOCOL:
+
+#-------Hipchat Settings--------------
+#HIPCHAT_AUTHTOKEN: 
+#HIPCHAT_USERNAME: 
+
+
+#----------SNMP Settings---------------------
+#SNMP_HOST:
+#SNMP_PORT:
+#SNMP_COMMUNITY:
+#SNMP_OID: 

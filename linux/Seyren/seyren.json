@@ -1,0 +1,33 @@
+{
+  "variables" : {
+    "seyren-version" : "1.5.0"
+  },
+  "builders": [
+  {
+    "type": "amazon-ebs",
+    "region": "eu-west-1",
+    "source_ami": "ami-d41d58a7",
+    "instance_type": "t2.micro",
+    "ssh_username": "ec2-user",
+    "ami_name": "seyren-build {{timestamp}}",
+    "tags": {
+        "name": "seyren - build - {{timestamp}}",
+        "creation_date": "{{isotime \"2006-01-02T15:04:05-0700\"}}"
+      }
+  }
+  ],
+  "provisioners" : [
+  {
+    "type" : "file",
+    "source" : "{{template_dir}}/files/mongodb-org-3.2.repo",
+    "destination" : "~/mongodb-org-3.2.repo"
+  },
+  {
+    "type": "shell",
+    "script": "{{template_dir}}/scripts/pre-reqs.sh"
+  },
+  {
+    "type": "shell",
+    "script": "{{template_dir}}/scripts/install-seyren.sh"
+  }]
+}
