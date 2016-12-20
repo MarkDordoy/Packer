@@ -29,13 +29,13 @@ else
     write-BoxStarterMessage "Virtual box windows additions already installed, skipping install"
 }
 
-#Write-BoxstarterMessage "Removing unused features..."
-#Get-WindowsFeature | 
-#where-object { $_.InstallState -eq 'Available' -and $_.Name -notlike "Web-*" } | 
-#Uninstall-WindowsFeature -Remove
+write-BoxstarterMessage "Removing unused features..."
+Get-WindowsFeature | 
+where-object { $_.InstallState -eq 'Available' -and $_.Name -notlike "Web-*" } | 
+Uninstall-WindowsFeature -Remove
 
 
-#Install-WindowsUpdate -AcceptEula
+Install-WindowsUpdate -AcceptEula
 
 Write-BoxstarterMessage "Cleaning SxS..."
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
@@ -82,5 +82,3 @@ winrm set winrm/config/service/auth '@{Basic="true"}'
 winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 
 Write-BoxstarterMessage "winrm setup complete"
-
-exit 0
