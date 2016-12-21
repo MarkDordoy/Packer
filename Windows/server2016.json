@@ -1,6 +1,7 @@
 {
   "builders": [
     {
+      "name" : "Server2016-VirtualBox",
       "type": "virtualbox-iso",
       "vboxmanage" : [
         [ "modifyvm", "{{.Name}}", "--natpf1", "winrm,tcp,,55985,,5985"],
@@ -21,7 +22,7 @@
       "shutdown_command": "C:/Windows/Panther/Unattend/packerShutdown.bat",
       "shutdown_timeout" : "15m",
       "floppy_files": [
-        "answer_files/2016Autounattend.xml",
+        "answer_files/2016/Autounattend.xml",
         "scripts/boxstarter.ps1",
         "scripts/package.ps1",
         "scripts/packerShutdown.bat",
