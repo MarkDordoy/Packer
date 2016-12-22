@@ -119,7 +119,7 @@ Run-Section -sectionName "CleanSxS" -scriptblock {
 
 Run-section -sectionName "PrepareSysPrep" -scriptblock {
     mkdir C:\Windows\Panther\Unattend
-    copy-item a:\postunattend.xml C:\Windows\Panther\Unattend\unattend.xml
+    Copy-Item -Path A:\postunattend.xml -Destination C:\Windows\Panther\Unattend\unattend.xml
 
     Write-BoxstarterMessage "Recreate agefile after sysprep"
     $System = GWMI Win32_ComputerSystem -EnableAllPrivileges
