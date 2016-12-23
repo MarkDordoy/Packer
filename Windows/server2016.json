@@ -35,7 +35,7 @@
       "type": "vagrant",
       "keep_input_artifact": true,
       "output": "windows_2016{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile-windows.template"
+      "vagrantfile_template": "vagrantfile-server2016.template"
     }
   ]
 }

@@ -2,6 +2,7 @@ iso
 output-virtualbox-iso
 output-hyperv-iso
 output-qemu
+output-*
 *.iso
 *.box
 .kitchen
