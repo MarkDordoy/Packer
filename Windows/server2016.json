@@ -18,13 +18,13 @@
       "winrm_port" : "55985",
       "winrm_timeout" : "5h",
       "guest_additions_mode" : "attach",
-      "shutdown_command" : "powershell.exe -File A:\\shutdown.ps1",
+      "shutdown_command" : "powershell.exe -File A:\\Shutdown.ps1",
       "shutdown_timeout" : "15m",
       "floppy_files": [
         "answer_files/2016/Autounattend.xml",
         "scripts/boxstarter.ps1",
         "scripts/boxstarterPackage.ps1",
-        "scripts/packerShutdown.bat",
+        "scripts/Shutdown.ps1",
         "scripts/postunattend.xml"
       ]
     }
