@@ -1,7 +1,8 @@
 param
 (
     [Parameter()]
-    [switch] $UseCoreOSWorkaround = $false
+    [switch] $UseCoreOSWorkaround = $false,
+    [switch] $installUpdates = $true
 )
 
 Function Install-CoreOSWorkaround
@@ -37,6 +38,11 @@ if($UseCoreOSWorkaround)
 {
     write-warning "Using Powershell profile workaround for startup items"
     Install-CoreOSWorkaround
+}
+
+if($installUpdates)
+{
+    $env:InstallUpdates = $true
 }
 
 Get-boxstarter -Force

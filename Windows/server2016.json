@@ -5,26 +5,25 @@
       "type": "virtualbox-iso",
       "vboxmanage" : [
         [ "modifyvm", "{{.Name}}", "--natpf1", "winrm,tcp,,55985,,5985"],
-        [ "modifyvm", "{{.Name}}", "--memory" , "2048"],
-        [ "modifyvm", "{{.Name}}", "--cpus" , "2"]
+        [ "modifyvm", "{{.Name}}", "--memory" , "2048"]
       ],
       "guest_os_type": "Windows2012_64",
       "iso_url": "ISO/en_windows_server_2016_x64_dvd_9327751.iso",
       "iso_checksum_type": "SHA1",
       "iso_checksum": "7E33DF150CB4D1FE3503E23433A1867DDD79A6EE",
-      "headless" : true,
+      "headless" : false,
       "communicator" : "winrm",
       "winrm_username" : "vagrant",
       "winrm_password" : "vagrant",
       "winrm_port" : "55985",
       "winrm_timeout" : "5h",
       "guest_additions_mode" : "attach",
-      "shutdown_command": "C:/Windows/Panther/Unattend/packerShutdown.bat",
+      "shutdown_command" : "powershell.exe -File A:\\shutdown.ps1",
       "shutdown_timeout" : "15m",
       "floppy_files": [
         "answer_files/2016/Autounattend.xml",
         "scripts/boxstarter.ps1",
-        "scripts/package.ps1",
+        "scripts/boxstarterPackage.ps1",
         "scripts/packerShutdown.bat",
         "scripts/postunattend.xml"
       ]

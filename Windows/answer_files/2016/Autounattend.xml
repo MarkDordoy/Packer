@@ -138,7 +138,7 @@
             </UserAccounts>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\boxstarter.ps1</CommandLine>
+                    <CommandLine>cmd.exe /c C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File a:\boxstarter.ps1 -installUpdates</CommandLine>
                     <Order>1</Order>
                 </SynchronousCommand>
             </FirstLogonCommands>

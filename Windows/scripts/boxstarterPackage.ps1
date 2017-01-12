@@ -78,7 +78,7 @@ Run-Section -sectionName "SetPSExecutionPolicy" -scriptblock {
 }
 
 Run-Section -sectionName "SetupVBGuestAdditions" -forceCompletePriorToRun -scriptblock {
-    certutil -addstore -f "TrustedPublisher" E:\cert\oracle-vbox.cer
+    certutil -addstore -f "TrustedPublisher" E:\cert\vbox-sha256.cer
     Start-Process -FilePath "E:\VBoxWindowsAdditions.exe" -ArgumentList "/S" -Wait
     invoke-reboot  
 }
@@ -90,8 +90,12 @@ Run-Section -sectionName "RemoveUnusedFeatures" -scriptblock {
 }
 
 Run-Section -sectionName "InstallWindowsUpdates" -scriptblock {
-    Install-WindowsUpdate -AcceptEula    
-    if(Test-PendingReboot){invoke-reboot}
+    
+    if($env:InstallUpdates)
+    {
+        Install-WindowsUpdate -AcceptEula    
+        if(Test-PendingReboot){invoke-reboot}
+    }
 }   
 
 Run-Section -sectionName "CleanSxS" -scriptblock {
