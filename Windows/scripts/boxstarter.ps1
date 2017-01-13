@@ -26,11 +26,17 @@ Function Install-CoreOSWorkaround
     Copy-Item -Force A:\startup-profile.ps1 $PROFILE
 }
 
-$WinlogonPath = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon"
+$autoAdminLogon = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon"
+$defaultUsername = "HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultUserName"
 
-
-Remove-ItemProperty -Path $WinlogonPath -Name AutoAdminLogon
-Remove-ItemProperty -Path $WinlogonPath -Name DefaultUserName
+if(test-path $autoAdminLogon)
+{
+    Remove-ItemProperty -Path $WinlogonPath -Name AutoAdminLogon
+}
+if(test-path $defaultUsername)
+{
+    Remove-ItemProperty -Path $WinlogonPath -Name DefaultUserName
+}
 
 invoke-expression ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/mwrock/boxstarter/master/BuildScripts/bootstrapper.ps1'))
 
