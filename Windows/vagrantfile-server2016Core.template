@@ -2,8 +2,14 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "MarkDordoy/WindowsServer2016Core"
+config.vm.define "vagrant-windows-2016-core"
+  config.vm.box = "windows_2016_core"
   config.vm.box_version = "1.0.0"
+
+
+  # Admin user name and password
+  config.winrm.username = "vagrant"
+  config.winrm.password = "vagrant"
 
   config.vm.guest = :windows
   config.vm.communicator = "winrm"
@@ -15,13 +21,4 @@ Vagrant.configure(2) do |config|
     vb.memory = 1024
   end
 
-  config.vm.provider 'hyperv' do |hv|
-    hv.ip_address_timeout = 240
-    hv.memory = 1024
-  end
-
-  config.vm.provider :libvirt do |domain|
-    domain.memory = 2028
-    domain.cpus = 2
-  end
 end
