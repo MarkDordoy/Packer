@@ -78,7 +78,13 @@ Run-Section -sectionName "SetPSExecutionPolicy" -scriptblock {
 }
 
 Run-Section -sectionName "SetupVBGuestAdditions" -forceCompletePriorToRun -scriptblock {
-    certutil -addstore -f "TrustedPublisher" E:\cert\vbox-sha256.cer
+    $certFiles = get-childitem -path E:\cert\ -filter "*.cer"
+
+    foreach($file in $certFiles)
+    {
+        certutil -addstore -f "TrustedPublisher" $file.FullName       
+    }
+    
     Start-Process -FilePath "E:\VBoxWindowsAdditions.exe" -ArgumentList "/S" -Wait
     invoke-reboot  
 }
@@ -91,10 +97,16 @@ Run-Section -sectionName "RemoveUnusedFeatures" -scriptblock {
 
 Run-Section -sectionName "InstallWindowsUpdates" -scriptblock {
     
-    if($env:InstallUpdates)
-    {
+    $letsInstallUpdates = [Environment]::GetEnvironmentVariable("InstallUpdates","machine")
+    if($letsInstallUpdates)
+    {   
+        write-host "Install Updates was set to true, updates will now be downloaded"
         Install-WindowsUpdate -AcceptEula    
         if(Test-PendingReboot){invoke-reboot}
+    }
+    else 
+    {
+        write-host "Windows updates will not be applied"
     }
 }   
 

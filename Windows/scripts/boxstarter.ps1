@@ -2,7 +2,7 @@ param
 (
     [Parameter()]
     [switch] $UseCoreOSWorkaround = $false,
-    [switch] $installUpdates = $true
+    [switch] $installUpdates
 )
 
 Function Install-CoreOSWorkaround
@@ -42,7 +42,7 @@ if($UseCoreOSWorkaround)
 
 if($installUpdates)
 {
-    $env:InstallUpdates = $true
+    [Environment]::SetEnvironmentVariable("InstallUpdates", $true, "machine")
 }
 
 Get-boxstarter -Force
